@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>答题App</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page startGame">
+    <button class="startBtn">开始答题</button>
+  </div>
+  <div class="page gaming">
+    <div class="clock">10</div>
+    <h1 class="timu"></h1>
+    <div class="main">
+
+    </div>
+  </div>
+  <div class="page endGame">
+    <h2>恭喜你答对<span class="num">0</span>题！</h2>
+    <h3>历史最高连续答题数：<span class="maxNum">0</span></h3>
+    <div class="reStart">重新开始</div>
+  </div>
+</body>
+  <script type="text/javascript" src="//www.jb51.net/jslib/jquery/jquery.min.js"></script>
+  <script>
+    var startBtn = document.querySelector(".startBtn");
+    var gamingPage = document.querySelector(".gaming");
+    var endPage = document.querySelector(".endGame");
+    var main = document.querySelector(".main");
+    var h1 = document.querySelector(".timu");
+    var reStart = document.querySelector('.reStart');
+    var clockDom = document.querySelector('.clock');
+    var timuList = [];
+    var currentTimu = null;
+    //记录答题数目
+    var score = 0;
+    //计时器的ID值
+    var clockID;
+
+    function renderTimu() {
+      clock();
+      var randomNum = parseInt(Math.random()*timuList.length);
+      var del = timuList.splice(randomNum,1);
+      currentTimu = del[0];
+      h1.innerHTML = currentTimu.quiz;
+      main.innerHTML = "";
+      //循环生成选项
+      currentTimu.options.forEach((item,index) => {
+        var newDiv = document.createElement('div');
+        newDiv.className = "optionItem";
+        newDiv.dataset.index = index + 1;
+        newDiv.innerHTML = (index + 1) + "、" + item;
+        main.appendChild(newDiv);
+      });
+    }
+
+    function clock(){
+      var num = 10;
+      clockDom.innerHTML = num;
+      clockID = setInterval(() => {
+        num--;
+        clockDom.innerHTML = num;
+        if(num == 0){
+          clearInterval(clockID);
+          endGame();
+        }
+      }, 1000);
+    }
+
+    function endGame(){
+      endPage.style.zIndex = 100;
+      var scoreDom = document.querySelector('.num');
+      var scoreMaxDom = document.querySelector('.maxNum');
+      scoreDom.innerHTML = score;
+      //sessionStorage 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。
+      if(sessionStorage.datiMaxScore){
+        scoreMaxDom.innerHTML = sessionStorage.datiMaxScore;
+        if(sessionStorage.datiMaxScore < score){
+          sessionStorage.datiMaxScore = score;
+        }
+      }else{
+        scoreMaxDom.innerHTML = score;
+        sessionStorage.datiMaxScore = score;
+      }
+    }
+    $.getJSON("js/dati.json",function (data) {  
+      timuList = data;
+      startBtn.onclick = function(){
+        gamingPage.style.zIndex = 50;
+        renderTimu();
+      }
+    })
+    
+    main.addEventListener("click",function(e){
+      if(e.target.className === "optionItem"){
+        clearInterval(clockID);
+        var index = e.target.dataset.index;   //string
+        if(currentTimu.answer == index){
+          score++;
+          e.target.style.backgroundColor = 'yellowgreen';
+          setTimeout(() => {
+            renderTimu();
+          }, 1000);
+        }else{
+          e.target.style.backgroundColor = 'deeppink';
+          var curAnswerDom = document.querySelector('.optionItem:nth-child('+currentTimu.answer+')') 
+          curAnswerDom.style.backgroundColor = 'yellowgreen';
+          setTimeout(() => {
+            endGame();
+          }, 2000);
+        }
+      }
+    })
+
+    reStart.onclick = function () { 
+      location.reload();
+    }
+
+  </script>
+</html>

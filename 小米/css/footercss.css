@@ -1,0 +1,242 @@
+#tool{
+    height: 25px;
+    padding: 27px 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 0 auto;
+}
+.list-tool li{
+    width: 243px;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+}
+.list-tool li:not(:first-child){
+    border-left: 1px solid #e0e0e0;
+}
+.list-tool li a{
+    color: #616161;
+    transition: all .2s linear;
+}
+.list-tool li a em{
+    font-size: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.list-tool li a:hover{
+    color: #ff6700;
+}
+/* 帮助中心 */
+#help{
+    padding: 40px 0;
+    margin: 0 auto;
+}
+#help .col-links{
+    float: left;
+    width: 160px;
+    height: 112px;
+}
+#help .col-links dt{
+    margin-bottom: 26px;
+    font-size: 14px;
+    color: #424242;
+}
+#help .col-links dd{
+    font-size: 12px;
+    margin-top: 10px;
+    
+}
+#help .col-links dd a{
+    color: #757575;
+}
+#help .col-links dd a:hover{
+    color: #ff6700;
+}
+/* 帮助中心右边 */
+#help #contact{
+    float: right;
+    border-left: 1px solid #e0e0e0;
+    width: 251px;
+    text-align: center;
+    color: #616161;
+}
+#help #contact p{
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+#help #contact .phone{
+    color: #ff6700;
+    font-size: 22px;
+    line-height: 1;
+}
+#help #contact>a{
+    width: 118px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 12px;
+    color: #ff6700;
+    display: inline-block;
+    border: 1px solid #ff6700;
+    transition: all .2s linear;
+}
+#help #contact>a em{
+    font-size: 13px;
+}
+#help #contact>a:hover{
+    background-color: #ff6700;
+    color: white;
+}
+#help #contact .follow{
+    margin-top: 10px;
+    font-size: 12px;
+    color: #616161;
+}
+#help #contact .follow .wb{
+    background-image: url("../images/wb.png");
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -6px;
+}
+#help #contact .follow .wb:hover{
+    background-image: url("../images/wb_2x.png");
+}
+#help #contact .follow .wx{
+    background-image: url("../images/wx.png");
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -6px;
+}
+#help #contact .follow .wx:hover{
+    background-image: url("../images/wx_2x.png");
+}
+/* 小米底部最后 */
+.site-info{
+    margin: 0 auto;
+    height: 215px;
+}
+.site-info .sites{
+    margin-bottom: 14px;
+    margin-top: 34.8px;
+    font-size: 14px;
+}
+.site-info .sites a{
+    color: #757575;
+}
+.site-info .sites a:hover{
+    color: #ff6700;
+}
+.site-info .sites span{
+    font-family: sans-serif;
+    margin: 0 3px;
+}
+.site-info p{
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    
+}
+.site-info p>a{
+    color: #757575;
+}
+.site-info p>a:hover{
+    color: #ff6700;
+}
+
+/* 侧边导航 */
+#side-navigation{
+    position: fixed;
+    bottom: 70px;
+    right: 0;
+    width: 84px;
+    height: 561px;
+}
+#side-navigation .item{
+    position: relative;
+    width: 82px;
+    height: 90px;
+    display: block;
+    border: 1px solid #f5f5f5;
+    text-align: center;
+    background-color: white;
+    color: #757575;
+}
+#side-navigation .item:last-child{
+    margin-top: 14px;
+}
+#side-navigation .item div{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    padding-top: 18px;
+    margin: 0 auto 8px;
+    text-align: center;
+}
+#side-navigation .item div img{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+}
+#side-navigation .item .static{
+    opacity: 1;
+}
+#side-navigation .item .hover{
+    opacity: 0;
+}
+#side-navigation .item span{
+    margin-top: 56px;
+    font-size: 14px;
+}
+#side-navigation .item:hover{
+    color: #ff6700;
+}
+#side-navigation .item:hover .static{
+    opacity: 0;
+}
+#side-navigation .item:hover .hover{
+    opacity: 1;
+}
+
+@media screen and (max-width:1453px) {
+    #side-navigation{
+        width: 27px;
+        height: 261px;
+        position: fixed;
+        left: 50%;
+        right: auto;
+        bottom: 40px;
+        margin-left: 613px;
+    }
+    #side-navigation .item{
+        width: 27px;
+        height: 42px;
+        box-sizing: border-box;
+        margin-top: -1px;
+    }
+    #side-navigation .item div{
+        width: 20px;
+        height: 20px;
+        padding-top: 10px;
+    }
+    #side-navigation .item div img{
+        width: 20px;
+        height: 20px;
+    }
+    #side-navigation .item span{
+        font-size: 0;
+    }
+}
+@media screen and (max-width:1293px){
+    #side-navigation{
+        left: auto;
+        right: 0;
+        margin-left: 0;
+    }
+}

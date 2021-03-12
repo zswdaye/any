@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    body {
+      user-select: none;
+    }
+
+    #tab {
+      width: 400px;
+      height: 300px;
+      margin: 50px auto;
+    }
+
+    #tab .tab {
+      width: 100%;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+    }
+
+    #tab .tab li {
+      width: 100px;
+      height: 30px;
+      text-align: center;
+      box-sizing: border-box;
+      line-height: 30px;
+      background-color: pink;
+      border-right: 1px solid #fff;
+      color: #fff;
+      transition: .3s;
+      cursor: pointer;
+    }
+
+    #tab .tab li.active {
+      background-color: #f60;
+    }
+
+    #tab .content {
+      position: relative;
+      width: 100%;
+      height: 270px;
+    }
+
+    #tab .content li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #666;
+      opacity: 0;
+      z-index: 0;
+      transition: opacity .3s;
+    }
+
+    #tab .content li.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    /* 左右箭头 */
+    #tab3 {
+      overflow: hidden;
+      position: relative;
+      width: 820px;
+      height: 380px;
+      margin: 50px auto;
+    }
+
+    #tab3 .img {
+      position: relative;
+      width: 100%;
+      height: 340px;
+    }
+
+    #tab3 .img li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      z-index: 0;
+      transition: opacity .3s;
+    }
+
+    #tab3 .img li.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    #tab3 .tab2 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    #tab3 .tab2 li {
+      width: 20%;
+      height: 38px;
+      background-color: #e3e2e2;
+      border-bottom: 2px solid #e3e2e2;
+      text-align: center;
+      line-height: 38px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    #tab3 .tab2 li.active {
+      background-color: #f5f5f5;
+      color: #cea861;
+      border-bottom: 2px solid #cea861;
+    }
+
+    #tab3 .arrow li {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      width: 30px;
+      height: 40px;
+      margin-top: -20px;
+      background-color: rgba(205, 167, 100, .5);
+      line-height: 40px;
+      text-align: center;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      transition: .2s;
+      cursor: pointer;
+
+    }
+
+    #tab3 .arrow li:hover {
+      background-color: rgba(205, 167, 100, .9);
+    }
+
+    #tab3 .arrow .left {
+      left: 0;
+    }
+
+    #tab3 .arrow .right {
+      right: 0;
+    }
+
+    /* 自动轮播 */
+    #tab4 {
+      overflow: hidden;
+      position: relative;
+      width: 820px;
+      height: 380px;
+      margin: 50px auto;
+    }
+
+    #tab4 .img {
+      position: relative;
+      width: 100%;
+      height: 340px;
+    }
+
+    #tab4 .img li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      z-index: 0;
+      transition: opacity .3s;
+    }
+
+    #tab4 .img li.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    #tab4 .tab2 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    #tab4 .tab2 li {
+      width: 20%;
+      height: 38px;
+      background-color: #e3e2e2;
+      border-bottom: 2px solid #e3e2e2;
+      text-align: center;
+      line-height: 38px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    #tab4 .tab2 li.active {
+      background-color: #f5f5f5;
+      color: #cea861;
+      border-bottom: 2px solid #cea861;
+    }
+
+    #tab4 .arrow li {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      width: 30px;
+      height: 40px;
+      margin-top: -20px;
+      background-color: rgba(205, 167, 100, .5);
+      line-height: 40px;
+      text-align: center;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      transition: .2s;
+      cursor: pointer;
+
+    }
+
+    #tab4 .arrow li:hover {
+      background-color: rgba(205, 167, 100, .9);
+    }
+
+    #tab4 .arrow .left {
+      left: 0;
+    }
+
+    #tab4 .arrow .right {
+      right: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="tab">
+    <ul class="tab">
+      <li class="active">A</li>
+      <li>B</li>
+      <li>C</li>
+      <li>D</li>
+    </ul>
+    <ul class="content">
+      <li class="active">A内容A内容A内容A内容A内容</li>
+      <li>B内容B内容B内容B内容B内容</li>
+      <li>C内容C内容C内容C内容C内容</li>
+      <li>Ｄ内容Ｄ内容Ｄ内容Ｄ内容Ｄ内容</li>
+    </ul>
+  </div>
+  <!-- 左右箭头 -->
+  <div id="tab3">
+    <ul class="img">
+      <li class="active"><img src="images/1.jpg"></li>
+      <li><img src="images/2.jpg"></li>
+      <li><img src="images/3.jpg"></li>
+      <li><img src="images/4.jpg"></li>
+      <li><img src="images/5.jpg"></li>
+    </ul>
+    <ul class="tab2">
+      <li class="active">季中英雄之礼</li>
+      <li>我们的冠军皮肤</li>
+      <li>试炼2019门票</li>
+      <li>晚23点iG再战SKT</li>
+      <li>票选更新英雄</li>
+    </ul>
+    <ul class="arrow">
+      <li class="left"> &lt; </li>
+      <li class="right"> &gt; </li>
+    </ul>
+  </div>
+  <!-- 自动轮播 -->
+  <div id="tab4">
+    <ul class="img">
+      <li class="active"><img src="images/1.jpg"></li>
+      <li><img src="images/2.jpg"></li>
+      <li><img src="images/3.jpg"></li>
+      <li><img src="images/4.jpg"></li>
+      <li><img src="images/5.jpg"></li>
+    </ul>
+    <ul class="tab2">
+      <li class="active">季中英雄之礼</li>
+      <li>我们的冠军皮肤</li>
+      <li>试炼2019门票</li>
+      <li>晚23点iG再战SKT</li>
+      <li>票选更新英雄</li>
+    </ul>
+    <ul class="arrow">
+      <li class="left"> &lt; </li>
+      <li class="right"> &gt; </li>
+    </ul>
+  </div>
+</body>
+<script>
+  function extend(Class) {
+    function F() {};
+    F.prototype = Class.prototype;
+    return new F();
+  }
+
+  function Tabactive(TabDom, MainDom) {
+    this.TabDom = TabDom;
+    this.MainDom = MainDom;
+    this.index = 0;
+    this.len = TabDom.length;
+    this.tabclick();
+  }
+  Tabactive.prototype.change = function (index) {
+    this.TabDom[this.index].classList.remove("active");
+    this.MainDom[this.index].classList.remove("active");
+    this.index = index;
+    this.TabDom[index].classList.add("active");
+    this.MainDom[index].classList.add("active");
+  }
+  Tabactive.prototype.tabclick = function () {
+    var This = this;
+    this.TabDom.forEach((el, i) => {
+      el.onclick = function () {
+        This.change(i);
+      }
+    });
+  }
+  // 左右箭头
+  function Tabpre(TabDom, MainDom, PreDom) {
+    Tabactive.call(this, TabDom, MainDom);
+    this.PreDom = PreDom;
+    this.arrowclick();
+  }
+  Tabpre.prototype = extend(Tabactive);
+  Tabpre.prototype.arrowclick = function () {
+    var This = this;
+    this.PreDom.forEach((el, i) => {
+      el.onclick = function () {
+        var index;
+        if (i) {
+          index = This.index + 1;
+          if (index >= This.len) index = 0;
+        } else {
+          index = This.index - 1;
+          if (index < 0) index = This.len - 1;
+        }
+        This.change(index);
+      }
+    })
+  }
+  // 自动轮播
+  function TabAuto(TabDom, MainDom, PreDom, Tab) {
+    Tabpre.call(this, TabDom, MainDom, PreDom);
+    this.Tab = Tab;
+    this.time();
+  }
+  TabAuto.prototype = extend(Tabpre);
+  TabAuto.prototype.time = function () {
+    var This = this;
+    var timer,i;
+    function auto(){
+      timer = setInterval(() => {
+        i = This.index + 1;
+        if (i >= This.len) i = 0;
+        This.change(i);
+      }, 2000)
+    };
+    auto();
+    this.Tab.onmouseleave = function(){
+      auto();
+    };
+    this.Tab.onmouseenter = function () {
+      clearInterval(timer);
+    }
+  }
+
+  new Tabactive(
+    document.querySelectorAll("#tab .tab li"),
+    document.querySelectorAll("#tab .content li")
+  )
+  // 左右箭头
+  new Tabpre(
+    document.querySelectorAll("#tab3 .tab2 li"),
+    document.querySelectorAll("#tab3 .img li"),
+    document.querySelectorAll("#tab3 .arrow li")
+  )
+
+  new TabAuto(
+    document.querySelectorAll("#tab4 .tab2 li"),
+    document.querySelectorAll("#tab4 .img li"),
+    document.querySelectorAll("#tab4 .arrow li"),
+    document.querySelector("#tab4")
+  )
+</script>
+
+</html>

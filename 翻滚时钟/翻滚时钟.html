@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .wrap{
+      width: 430px;
+      height: 80px;
+      margin: 50px auto;
+      line-height: 80px;
+      display: flex;
+      overflow: hidden;
+    }
+    .time{
+      position: relative;
+      /* transition: top .8s; */
+    }
+    .dot{
+      /* width: 20px; */
+      height: 80px;
+      text-align: center;
+      font-size: 35px;
+    }
+    p{
+      width: 60px;
+      height: 80px;
+      background-color: black;
+      margin:0 5px;
+      border-radius: 15px;
+      position: relative;
+      /* top: -5px; */
+      color: white;
+      text-align: center;
+      font-size: 35px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="time">
+      <p></p>
+      <p></p>
+    </div>
+    <div class="time">
+      <p></p>
+      <p></p>
+    </div>
+    <div class="dot">
+      :
+    </div>
+    <div class="time">
+      <p></p>
+      <p></p>
+    </div>
+    <div class="time">
+      <p></p>
+      <p></p>
+    </div>
+    <div class="dot">
+      :
+    </div>
+    <div class="time">
+      <p></p>
+      <p></p>
+    </div>
+    <div class="time">
+      <p></p>
+      <p></p>
+    </div>
+  </div>
+
+  <script>
+    let otime = document.querySelectorAll(".time");
+    let op = document.querySelectorAll(".time :nth-of-type(1)");
+    let tp = document.querySelectorAll(".time :nth-of-type(2)");
+
+    function select(obj){
+      return obj = obj < 10 ? "0" + obj : "" + obj;
+    }
+    function getTime(){
+      var now = new Date();
+      return (select(now.getHours())+select(now.getMinutes())+select(now.getSeconds())).split("");
+    }
+    
+    let arr = getTime();
+    op.forEach(function(el,i){
+      el.innerHTML = arr[i]
+    })
+    tp.forEach(function(el,i){
+      el.innerHTML = arr[i];
+    })
+
+    setInterval(() => {
+      // let arr = getTime();
+      let narr = getTime();
+      
+      for(let i = 0; i<6; i++){
+        // 每一位是否和上一次的时间显示是一样的
+        if(arr[i] === narr[i]){
+          continue;
+        }
+        // 不一样才会走到这里
+        // 对应第二排改变内容
+        tp[i].innerHTML = narr[i];
+        otime[i].style.transition = "top .3s";
+        otime[i].style.top = "-80px";
+        // 动画完成之后 div瞬间下来
+        setTimeout(() => {
+          op[i].innerHTML = narr[i];
+          otime[i].style.transition = "top 0s";
+          otime[i].style.top = 0;
+        },500);
+        
+      }
+
+      // 循环检测完之后
+      arr = narr;
+
+    },1000)
+
+
+  </script>
+</body>
+
+</html>

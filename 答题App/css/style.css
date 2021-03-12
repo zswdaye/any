@@ -1,0 +1,103 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.page{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  background-color: purple;
+}
+
+.startGame{
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.startGame .startBtn{
+  width: 8rem;
+  height: 3rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  border: none;
+  background: deepskyblue;
+  border-radius: 3rem;
+  color: #fff;
+  box-shadow: 0 0 20px #999;
+}
+
+.gaming{
+  background: darkblue;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.clock{
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  line-height: 3rem;
+  background: mistyrose;
+  margin: 1rem auto;
+  color: #333;
+}
+.gaming .timu{
+  width: 100vw;
+  font-size: 1rem;
+  color: #fff;
+  margin: 1rem auto;
+  text-align: center;
+}
+.gaming .main{
+  width: 75vw;
+  font-size: 0.8rem;
+  color: #fff;
+  margin: 1rem auto;
+  background: rgba(0, 0, 0, .6);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+.gaming .main .optionItem{
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin: 0.1rem 0;
+}
+
+.endGame{
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.endGame h2{
+  font-size: 2rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+.endGame h3{
+  font-size: 1rem;
+  color: #ccc;
+  margin: 1rem 0;
+}
+.endGame .reStart{
+  width: 8rem;
+  height: 3rem;
+  font-size: 1rem;
+  line-height: 3rem;
+  border: none;
+  background: deepskyblue;
+  border-radius: 3rem;
+  color: #fff;
+  box-shadow: 0 0 20px #999;
+  text-align: center;
+}
+

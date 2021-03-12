@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrap{
+      width: 400px;
+      height: 60px;
+      margin: 50px auto;
+      /* background-color: #aaddff; */
+      line-height: 60px;
+    }
+    span{
+      background-color: black;
+      display: inline-block;
+      width: 50px;
+      height: 60px;
+      border-radius: 10px;
+      vertical-align: middle;
+      color: white;
+      font-size: 25px;
+      text-align: center;
+    }
+    i{
+      font-size: 25px;
+      font-style: normal;
+      display: inline-block;
+      vertical-align: middle;
+
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <span></span>
+    <span></span>
+    <i>:</i>
+    <span></span>
+    <span></span>
+    <i>:</i> 
+    <span></span>
+    <span></span>
+  </div>
+
+  <script>
+      // var ospan = document.getElementsByTagName("span");
+      var ospan = document.querySelectorAll(".wrap span")
+      setInterval(() => {
+        var now = new Date();
+        var time = now.getTime();
+        var h = Math.floor(time/1000/60/60%24 + 8);
+        var m = Math.floor(time/1000/60%60);
+        var s = Math.floor(time/1000%60);
+        ospan[0].innerHTML = Math.floor(h / 10);
+        ospan[1].innerHTML = Math.floor(h % 10);
+        ospan[2].innerHTML = Math.floor(m / 10);
+        ospan[3].innerHTML = Math.floor(m % 10);
+        ospan[4].innerHTML = Math.floor(s / 10);
+        ospan[5].innerHTML = Math.floor(s % 10);
+      }, 1000);
+    
+    
+  </script>
+</body>
+</html>
